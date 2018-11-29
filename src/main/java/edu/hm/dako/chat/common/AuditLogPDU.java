@@ -14,12 +14,25 @@ import org.apache.commons.logging.LogFactory;
  * @author E.Nicole Harmat
  */
 public class AuditLogPDU {
-  PduType pduType;
-  private String userName;
 
-  public AuditLogPDU() {
-    // this.pduType = PduType. CHAT_MESSAGE_EVENT;
+
+  // Name des Clients, von dem ein Event initiiert wurde
+  private String eventUserName;
+
+
+
+
+  public AuditLogPDU(ChatPDU chatPDU) {
+
+
+    this.eventUserName = chatPDU.getEventUserName();
+
+
+         //   PduType. CHAT_MESSAGE_EVENT;
   }
+
+
+
 
   public PduType getPduType() {
     return pduType;

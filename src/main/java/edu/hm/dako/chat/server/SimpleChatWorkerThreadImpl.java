@@ -439,6 +439,7 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 				// Login-Request vom Client empfangen
 				loginRequestAction(receivedPdu);
 
+
 				break;
 
 			case CHAT_MESSAGE_REQUEST:
@@ -454,7 +455,7 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 				//TODO hole connection zum auditlog
 				//TODO sende meine auditlogpdu an den auditlog
 
-				sendLoginListUpdateEvent(receivedPdu);
+
 				break;
 
 			default:
@@ -466,5 +467,8 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 			log.error("Exception bei der Nachrichtenverarbeitung");
 			ExceptionHandler.logExceptionAndTerminate(e);
 		}
+	}
+	private void mySendMethod() {
+		//TODO zieladresse des tcp servers, und senden an diese zieladresse
 	}
 }

@@ -51,11 +51,14 @@ public final class ServerFactory {
 
 		switch (implType) {
 
+
 			case SimpleChatExtendedImplementation:
 
 			try {
 				TcpServerSocket tcpServerSocket = new TcpServerSocket(serverPort, sendBufferSize,
 						receiveBufferSize);
+
+
 				return new SimpleChatExtendedServerImpl(Executors.newCachedThreadPool(),
 						getDecoratedServerSocket(tcpServerSocket), serverGuiInterface);
 				
