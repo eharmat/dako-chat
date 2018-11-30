@@ -1,6 +1,10 @@
 package edu.hm.dako.chat.common;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Vector;
 
 import edu.hm.dako.chat.server.ServerStartData;
@@ -15,50 +19,25 @@ import org.apache.commons.logging.LogFactory;
  */
 public class AuditLogPDU {
 
-
+  // Typ des Protokoll-Datensatzes
+  private PduType pduType;
   // Name des Clients, von dem ein Event initiiert wurde
   private String eventUserName;
-
-
-
+  // Identifikation des verarbeitenden Worker-Threads im Chat-Server
+  private String serverThreadName;
+  // Identifikation des verarbeitenden Threads im Chat-Client
+  private String clientThreadName;
+  // Inhalt der Chat-Nachricht
+  private String message;
 
   public AuditLogPDU(ChatPDU chatPDU) {
-
-
+    this.pduType = chatPDU.getPduType();
     this.eventUserName = chatPDU.getEventUserName();
-
-
-         //   PduType. CHAT_MESSAGE_EVENT;
+    this.serverThreadName = chatPDU.getServerThreadName();
+    this.clientThreadName = chatPDU.getClientThreadName();
+    this.message = chatPDU.getMessage();
   }
 
-
-
-
-  public PduType getPduType() {
-    return pduType;
-  }
-
-  /*public ServerStartData getStartTime() {
-      return getStartTime();
-  }*/
-
-  /*public long getServerTime() {
-    return getServerTime();
-  }*/
-
-  public String getUserName() {
-    return userName;
-  }
-
-  public String getServerThreadName() {
-    return getServerThreadName();
-  }
-
-  public String getClientThreadName() {
-    return getClientThreadName();
-  }
-
-  public String getMessage() {
-    return getMessage();
-  }
+  // Zeitstempel der Erzeugung der Audit-Log Nachricht
+  private String now = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date());
 }

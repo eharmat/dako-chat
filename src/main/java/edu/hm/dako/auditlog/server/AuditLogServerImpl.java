@@ -30,12 +30,9 @@ public class AuditLogServerImpl extends AbstractChatServer {
   // Threadpool fuer Worker-Threads
   private final ExecutorService executorService;
 
-
   // Socket fuer den Listener, der alle Verbindungsaufbauwuensche der Clients
   // entgegennimmt
   private ServerSocketInterface socket;
-
-
 
   /**
    * Konstruktor
@@ -70,18 +67,15 @@ public class AuditLogServerImpl extends AbstractChatServer {
             while (!Thread.currentThread().isInterrupted() && !socket.isClosed()) {
               try {
                 // Auf ankommende Verbindungsaufbauwuensche warten
-                System.out.println(
-                    "AuditLogServer wartet auf Verbindungsanfragen von Clients...");
+                System.out.println("AuditLogServer wartet auf Verbindungsanfragen von Clients...");
 
                 Connection connection = socket.accept();
                 log.debug("Neuer Verbindungsaufbauwunsch empfangen");
 
                 // Neuen Workerthread starten
                 executorService.submit(
-                    new AuditLogWorkerThreadImpl(
-                        connection, clients, counter, serverGuiInterface));
+                    new AuditLogWorkerThreadImpl(connection, clients, counter, serverGuiInterface));
                 UdpDatagramSocket udpServerSocket = new UdpDatagramSocket();
-
 
               } catch (Exception e) {
                 if (socket.isClosed()) {
