@@ -46,6 +46,7 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 
   // Standard-Port des Servers
   static final String DEFAULT_SERVER_PORT = "50000";
+  static final String DEFAULT_SERVER_PORT_AUDIT = "60000";
 
   // Standard-und Maximal-Puffergroessen in Byte
   static final String DEFAULT_SENDBUFFER_SIZE = "300000";
@@ -174,7 +175,7 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
     inputPane.setVgap(1);
 
     comboBoxImplType = createComboBox(implTypeOptions);
-    serverPort = createEditableTextfield("");
+    serverPort = createEditableTextfield(DEFAULT_SERVER_PORT);
     sendBufferSize = createEditableTextfield(DEFAULT_SENDBUFFER_SIZE);
     receiveBufferSize = createEditableTextfield(DEFAULT_RECEIVEBUFFER_SIZE);
     comboBoxImplType.setVisibleRowCount(3);

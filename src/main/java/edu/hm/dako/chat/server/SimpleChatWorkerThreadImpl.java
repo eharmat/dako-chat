@@ -1,9 +1,16 @@
 package edu.hm.dako.chat.server;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.Socket;
 import java.util.Vector;
 
 import edu.hm.dako.chat.client.ClientImpl;
 import edu.hm.dako.chat.common.*;
+import edu.hm.dako.chat.tcp.TcpServerSocket;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -20,7 +27,10 @@ import edu.hm.dako.chat.connection.EndOfFileException;
  */
 public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 
+	//protected DatagramSocket socket;
+	//protected DatagramPacket packet;
 
+	// private TcpServerSocket myTcpServer = new TcpServerSocket(60000, 30000, 30000);
 	private ClientImpl communicator;
 	private static Log log = LogFactory.getLog(SimpleChatWorkerThreadImpl.class);
 
@@ -374,10 +384,12 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 		// Warten auf naechste Nachricht
 		ChatPDU receivedPdu = null;
 
+
 		// Nach einer Minute wird geprueft, ob Client noch eingeloggt ist //20Min!!!!!
 		final int RECEIVE_TIMEOUT = 1200000;   //20 Minuten anstatt 2 Minuten (120000ms)??
 
 		try {
+
 			receivedPdu = (ChatPDU) connection.receive(RECEIVE_TIMEOUT);
 			// Nachricht empfangen
 			// Zeitmessung fuer Serverbearbeitungszeit starten
@@ -424,11 +436,11 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 			return;
 		}
 
-		/* Verbindung??
-		public ClientImpl getCommunicator() {
-			return communicator;
-		} */
+		Socket serverClient = new Socket (InetAddress.getLocalHost(), 60000);
+		ObjectInputStream in = new ObjectInputStream(serverClient.getInputStream());
+		ObjectOutputStream out = new ObjectOutputStream(serverClient.getOutputStream());
 
+		//socket = new DatagramSocket();
 
 
 		// Empfangene Nachricht bearbeiten
@@ -438,23 +450,23 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 			case LOGIN_REQUEST:
 				// Login-Request vom Client empfangen
 				loginRequestAction(receivedPdu);
+				out.writeObject(receivedPdu);
 
+				//packet = receivedPdu, ;
+				//socket.send(packet);
 
 				break;
 
 			case CHAT_MESSAGE_REQUEST:
 				// Chat-Nachricht angekommen, an alle verteilen
 				chatMessageRequestAction(receivedPdu);
-
+				out.writeObject(receivedPdu);
 				break;
 
 			case LOGOUT_REQUEST:
 				// Logout-Request vom Client empfangen
 				logoutRequestAction(receivedPdu);
-
-				//TODO hole connection zum auditlog
-				//TODO sende meine auditlogpdu an den auditlog
-
+				out.writeObject(receivedPdu);
 
 				break;
 
@@ -468,6 +480,8 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 			ExceptionHandler.logExceptionAndTerminate(e);
 		}
 	}
+
+	//andere Methode mit einem neuen anderen Server
 	private void mySendMethod() {
 		//TODO zieladresse des tcp servers, und senden an diese zieladresse
 	}

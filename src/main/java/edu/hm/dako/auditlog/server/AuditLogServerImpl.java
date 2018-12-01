@@ -75,7 +75,7 @@ public class AuditLogServerImpl extends AbstractChatServer {
                 // Neuen Workerthread starten
                 executorService.submit(
                     new AuditLogWorkerThreadImpl(connection, clients, counter, serverGuiInterface));
-                UdpDatagramSocket udpServerSocket = new UdpDatagramSocket();
+                //UdpDatagramSocket udpServerSocket = new UdpDatagramSocket();
 
               } catch (Exception e) {
                 if (socket.isClosed()) {

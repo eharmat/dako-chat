@@ -2,6 +2,8 @@ package edu.hm.dako.chat.udp;
 
 import java.io.IOException;
 import java.net.BindException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -15,7 +17,11 @@ import edu.hm.dako.chat.connection.ServerSocketInterface;
  * @author E.Nicole Harmat
  */
 public class UdpDatagramSocket {
+    protected DatagramSocket socket;
+    protected DatagramPacket packet;
 
+    public UdpDatagramSocket(String receivedPdu, String host, int port) {
+    }
 }
 
 

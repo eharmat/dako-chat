@@ -74,7 +74,7 @@ public final class ServerFactory {
         return new UDPAuditLogServerImpl(Executors.newCachedThreadPool(),
           getDecoratedServerSocket(tcpServerSocket), serverGuiInterface);*/
 
-        UdpDatagramSocket udpServerSocket = new UdpDatagramSocket();//Buffer size??
+        //UdpDatagramSocket udpServerSocket = new UdpDatagramSocket();//Buffer size??
 
 
       } catch (Exception e) {
