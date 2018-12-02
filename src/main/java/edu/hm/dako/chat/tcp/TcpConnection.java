@@ -1,6 +1,8 @@
 package edu.hm.dako.chat.tcp;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.Socket;
 import java.net.SocketException;
@@ -25,8 +27,8 @@ public class TcpConnection implements Connection {
 	private static Log log = LogFactory.getLog(TcpConnection.class);
 
 	// Ein- und Ausgabestrom der Verbindung
-	// private ObjectOutputStream out;
-	// private ObjectInputStream in;
+	private ObjectOutputStream outA;
+	private ObjectInputStream inA;
 
 	private ObjectEncoderOutputStream out;
 	private ObjectDecoderInputStream in;
@@ -56,8 +58,8 @@ public class TcpConnection implements Connection {
 			out = new ObjectEncoderOutputStream(socket.getOutputStream());
 			in = new ObjectDecoderInputStream(socket.getInputStream());
 
-			// out = new ObjectOutputStream(socket.getOutputStream());
-			// in = new ObjectInputStream(socket.getInputStream());
+			outA = new ObjectOutputStream(socket.getOutputStream());
+			inA = new ObjectInputStream(socket.getInputStream());
 
 			log.debug("Standardgroesse des Empfangspuffers der Verbindung: "
 					+ socket.getReceiveBufferSize() + " Byte");
@@ -72,7 +74,7 @@ public class TcpConnection implements Connection {
 
 			// TCP-Optionen einstellen
 			socket.setTcpNoDelay(TcpNoDelay);
-			// socket.setTcpNoDelay(false);
+			socket.setTcpNoDelay(false);
 			socket.setKeepAlive(keepAlive);
 
 			// TCP-Optionen ausgeben

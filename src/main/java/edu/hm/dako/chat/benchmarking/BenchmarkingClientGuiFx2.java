@@ -1033,7 +1033,7 @@ public class BenchmarkingClientGuiFx2 extends Application
 		String item = new String(optionListImplType.getValue().toString());
 		if (item.equals(SystemConstants.IMPL_TCP_SIMPLE)) {
 			iParam.setImplementationType(
-					edu.hm.dako.chat.common.ImplementationType.SimpleChatExtendedImplementation);
+					edu.hm.dako.chat.common.ImplementationType.SimpleChatImplementation);
 			implType.setTextFill(Color.web(SystemConstants.BLACK_COLOR));
 		} else {
 			setAlert("Kein Implementierungstyp ausgew\u00c4hlt!");

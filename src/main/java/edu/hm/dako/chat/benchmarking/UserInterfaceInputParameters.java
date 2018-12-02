@@ -44,7 +44,7 @@ public class UserInterfaceInputParameters {
 		numberOfMessages = 5;
 		remoteServerPort = 50000;
 		remoteServerAddress = "127.0.0.1";
-		implementationType = ImplementationType.SimpleChatExtendedImplementation;
+		implementationType = ImplementationType.SimpleChatImplementation;
 		measurementType = MeasurementType.VarThreads;
 	}
 
@@ -60,8 +60,8 @@ public class UserInterfaceInputParameters {
 
 		switch (type) {
 		
-			case SimpleChatExtendedImplementation:
-			returnString = "SimpleChatExtended-Implementation";
+			case SimpleChatImplementation:
+			returnString = "SimpleChat-Implementation";
 			break;
 
 			case TCPAuditLogImplementation:

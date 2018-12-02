@@ -72,7 +72,6 @@ public class AuditLogAnalyser {
 
             out.flush();
             out.close();
-
         } catch (IOException e) {
             log.error("Fehler beim Schreiben des Auswertungssatzes in Datei " + fileName);
         }

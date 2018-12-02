@@ -26,7 +26,7 @@ public final class BenchmarkingClientFactory {
 
 			switch (param.getImplementationType()) {
 
-			case SimpleChatExtendedImplementation:
+			case SimpleChatImplementation:
 
 				BenchmarkingClientImpl impl = new BenchmarkingClientImpl(userInterface,
 						benchmarkingGui, param.getImplementationType(), param.getRemoteServerPort(),

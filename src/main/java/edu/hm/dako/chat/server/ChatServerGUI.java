@@ -46,7 +46,7 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 
   // Standard-Port des Servers
   static final String DEFAULT_SERVER_PORT = "50000";
-  static final String DEFAULT_SERVER_PORT_AUDIT = "60000";
+  static final String DEFAULT_SERVER_PORT_AUDIT = "50001"; //ist noch nicht implementiert für automatischs Einfügen
 
   // Standard-und Maximal-Puffergroessen in Byte
   static final String DEFAULT_SENDBUFFER_SIZE = "300000";
@@ -431,10 +431,10 @@ public class ChatServerGUI extends Application implements ChatServerGuiInterface
 
     ImplementationType serverImpl = null;
     if (implType.equals(SystemConstants.IMPL_TCP_SIMPLE)) {
-      serverImpl = ImplementationType.SimpleChatExtendedImplementation;
+      serverImpl = ImplementationType.SimpleChatImplementation;
     } else {
-      if (implType.equals(SystemConstants.IMPL_UDP_AUDITLOG)) {
-        serverImpl = ImplementationType.UDPAuditLogImplementation;
+      if (implType.equals(SystemConstants.IMPL_UDP_AUDITLOG)) { //wird nicht benutzt
+        serverImpl = ImplementationType.UDPAuditLogImplementation;//wird nicht benutzt
 
       } else {
         if (implType.equals(SystemConstants.IMPL_TCP_AUDITLOG)) {

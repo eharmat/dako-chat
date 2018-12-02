@@ -436,7 +436,7 @@ public class SimpleChatWorkerThreadImpl extends AbstractWorkerThread {
 			return;
 		}
 
-		Socket serverClient = new Socket (InetAddress.getLocalHost(), 60000);
+		Socket serverClient = new Socket (InetAddress.getLocalHost(), 50001);
 		ObjectInputStream in = new ObjectInputStream(serverClient.getInputStream());
 		ObjectOutputStream out = new ObjectOutputStream(serverClient.getOutputStream());
 

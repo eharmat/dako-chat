@@ -1,5 +1,6 @@
 package edu.hm.dako.auditlog.server;
 
+import edu.hm.dako.chat.common.AuditLogPDU;
 import edu.hm.dako.chat.common.ClientListEntry;
 import edu.hm.dako.chat.common.ExceptionHandler;
 import edu.hm.dako.chat.connection.Connection;
@@ -9,6 +10,10 @@ import edu.hm.dako.chat.server.ChatServerGuiInterface;
 import edu.hm.dako.chat.server.SharedChatClientList;
 import edu.hm.dako.chat.server.SharedServerCounter;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.Vector;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -124,3 +129,29 @@ public class AuditLogServerImpl extends AbstractChatServer {
     System.out.println("AuditLogServer beendet sich");
   }
 }
+
+/*public class AuditLogServerImpl {
+
+  int Portnummer = 60000;
+  ServerSocket server = new ServerSocket(Portnummer);
+
+  while (true) {
+  Socket incoming = server.accept();
+
+  ObjectInputStream in;
+  ObjectOutputStream out;
+
+  try {
+    out = new ObjectOutputStream(incoming.getOutputStream());
+    in = new ObjectInputStream(incoming.getInputStream());
+
+    AuditLogPDU pdu = (AuditLogPDU) in.readObject();
+
+
+    out.writeObject(new AuditLogPDU()..);
+
+    incoming.close(); }
+    catch (Exception e) {
+  } }
+
+}*/

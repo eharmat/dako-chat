@@ -6,7 +6,7 @@ package edu.hm.dako.chat.common;
  * @author Mandl (erw. E.Nicole Harmat)
  */
 public enum ImplementationType {
-  SimpleChatExtendedImplementation,
-  UDPAuditLogImplementation,
+  SimpleChatImplementation,
+  UDPAuditLogImplementation,//nicht implementiert
   TCPAuditLogImplementation,
 }

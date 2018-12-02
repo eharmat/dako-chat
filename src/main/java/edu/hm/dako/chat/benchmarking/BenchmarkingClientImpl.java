@@ -123,7 +123,7 @@ public class BenchmarkingClientImpl extends AbstractChatClient
 
 		switch (implementationType) {
 
-		case SimpleChatExtendedImplementation:
+		case SimpleChatImplementation:
 			try {
 				messageListenerThread = new SimpleMessageListenerThreadImpl(this, connection,
 						sharedClientData);

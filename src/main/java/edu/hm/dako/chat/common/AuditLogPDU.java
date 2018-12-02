@@ -29,8 +29,10 @@ public class AuditLogPDU {
   private String clientThreadName;
   // Inhalt der Chat-Nachricht
   private String message;
+  private String pdu;
 
   public AuditLogPDU(ChatPDU chatPDU) {
+    this.pdu = chatPDU.toString();
     this.pduType = chatPDU.getPduType();
     this.eventUserName = chatPDU.getEventUserName();
     this.serverThreadName = chatPDU.getServerThreadName();

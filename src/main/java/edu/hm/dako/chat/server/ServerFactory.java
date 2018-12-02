@@ -1,7 +1,7 @@
 package edu.hm.dako.chat.server;
 
 import edu.hm.dako.auditlog.server.AuditLogServerImpl;
-import edu.hm.dako.chat.udp.UdpDatagramSocket;
+
 import java.util.concurrent.Executors;
 
 import org.apache.commons.logging.Log;
@@ -52,21 +52,22 @@ public final class ServerFactory {
 		switch (implType) {
 
 
-			case SimpleChatExtendedImplementation:
+			case SimpleChatImplementation:
 
 			try {
 				TcpServerSocket tcpServerSocket = new TcpServerSocket(serverPort, sendBufferSize,
 						receiveBufferSize);
 
 
-				return new SimpleChatExtendedServerImpl(Executors.newCachedThreadPool(),
+				return new SimpleChatServerImpl(Executors.newCachedThreadPool(),
 						getDecoratedServerSocket(tcpServerSocket), serverGuiInterface);
 				
 			} catch (Exception e) {
 				throw new Exception(e);
 			}
 
-			case UDPAuditLogImplementation:
+
+			case UDPAuditLogImplementation: // wird nicht benutzt
 
       try {
         /*TcpServerSocket tcpServerSocket = new TcpServerSocket(serverPort, sendBufferSize,

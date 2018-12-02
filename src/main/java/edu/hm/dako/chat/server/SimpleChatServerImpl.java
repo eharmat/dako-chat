@@ -19,9 +19,9 @@ import javafx.concurrent.Task;
  *
  * @author Peter Mandl
  */
-public class SimpleChatExtendedServerImpl extends AbstractChatServer {
+public class SimpleChatServerImpl extends AbstractChatServer {
 
-	private static Log log = LogFactory.getLog(SimpleChatExtendedServerImpl.class);
+	private static Log log = LogFactory.getLog(SimpleChatServerImpl.class);
 
 	// Threadpool fuer Worker-Threads
 	private final ExecutorService executorService;
@@ -37,8 +37,8 @@ public class SimpleChatExtendedServerImpl extends AbstractChatServer {
 	 * @param socket
 	 * @param serverGuiInterface
 	 */
-	public SimpleChatExtendedServerImpl(ExecutorService executorService,
-										ServerSocketInterface socket, ChatServerGuiInterface serverGuiInterface) {
+	public SimpleChatServerImpl(ExecutorService executorService,
+								ServerSocketInterface socket, ChatServerGuiInterface serverGuiInterface) {
 		log.debug("SimpleChatSExtendederverImpl konstruiert");
 		this.executorService = executorService;
 		this.socket = socket;
